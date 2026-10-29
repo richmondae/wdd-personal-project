@@ -1,6 +1,15 @@
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
+document.querySelectorAll('.back-top').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) window.scrollTo(0, 0);
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
 menuToggle?.addEventListener('click', () => {
   const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
   menuToggle.setAttribute('aria-expanded', String(!isOpen));
